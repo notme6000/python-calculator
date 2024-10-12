@@ -1,5 +1,5 @@
 my_list=[]
-global a
+
 
 def calculator():
     a=0
