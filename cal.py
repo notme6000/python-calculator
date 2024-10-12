@@ -1,49 +1,47 @@
-import math
-
-c=0
-
-def addition(a,b):
-    global c
-    c = a+b
-    
-
-def subtraction(a,b):
-    global c
-    c = a-b
-    
-
-def multiplication(a,b):
-    global c
-    c = a*b
-    
-
-def division(a,b):
-    global c
-    c = a/b
-    
-
-def exponent(a,b):
-    global c
-    c = a**b
-    
+my_list=[]
+global a
 
 def calculator():
-    a = int(input("enter a number:"))
-    b = int(input("enter a number:"))
+    a=0
+    print("enter {q} for quiting")
+    while True:
+        user_input =(input("enter the no. for calculation:"))
+        if user_input.lower() == 'q':
+            print("calculator exited")
+            break
+        try:
+            a = int(user_input)
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+            continue
 
-    print(" 1.addition\n 2.subtraction\n 3.multiplication\n 4.division\n 5.exponent")
-    operator = int(input("select an operation:"))
+        value = input("Enter the operator (+,-,*,/,**):")
 
-    if operator == 1:
-        addition(a,b)
-    elif operator == 2:
-        subtraction(a,b)
-    elif operator == 3:
-        multiplication(a,b)
-    elif operator == 4:
-        division(a,b)
+        if isinstance(my_list, list) and my_list:
+            switch_case(value , a)
+            print("Result:",my_list[0])
+        else:
+            my_list.insert(0,a)
+            print("Ruesult:", my_list[0])
+
+
+
+def switch_case(value,a):
+    if value == '+':
+        my_list.insert(0, my_list[0] + a)
+    elif value == '-':
+        my_list.insert(0, my_list[0] - a)
+    elif value == '*':
+        my_list.insert(0, my_list[0] * a)
+    elif value == '/':
+        if a != 0:
+            my_list.insert(0, my_list[0] / a)
+        else:
+            print("Error: Division by zero.")
+            my_list.insert(0, my_list[0])
+    elif value == '**':
+        my_list.insert(0, my_list[0] ** a)
     else:
-        exponent(a,b)
+        print("invalid operator")
 
 calculator()
-print("result = ",c)
